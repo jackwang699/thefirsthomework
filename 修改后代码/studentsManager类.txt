@@ -1,0 +1,121 @@
+import java.util.Scanner;
+
+public class Main {
+    //初始化
+    static int num = 0;
+    static boolean tag = true;
+    static boolean tag_1 = true;
+    static Students[] stu = new Students[100];
+    static Scanner scan = new Scanner(System.in);
+
+    public static void main(String[] args) {
+
+        while (tag) { // 主菜单
+            System.out.println("1.插入");
+            System.out.println("2.删除");
+            System.out.println("3.修改");
+            System.out.println("4.查询并输出");
+            System.out.println("5.退出");
+
+            int scan_num = scan.nextInt();
+            switch (scan_num) { // 主菜单选择
+            case 1:
+                add();
+                break;
+            case 2:
+                delete();
+                break;
+            case 3:
+                gai();
+                break;
+            case 4:
+                cha();
+                break;
+            case 5:
+                tag = false;
+                break;
+            default:
+                break;
+            }
+
+        }
+    }
+
+    static void add() { // 增加学生信息
+        while (tag_1) {
+            stu[num] = new Students();
+            System.out.println("请依次输入学号，姓名，性别，出生日期");
+            
+	stu[num].setID(scan.nextInt());
+	stu[num].setName(scan.next());
+ 	stu[num].setGender(scan.next());
+	stu[num].setbirDate(scan.next());
+            
+            num++;
+            System.out.println("继续输入请输入true,否则输入false");
+            tag_1 = scan.nextBoolean();
+
+        }
+        lookup();
+    }
+
+
+    static boolean kick = false;
+
+    static void delete() { // 删除学生信息
+        System.out.println("请输入你要删除的学号");
+        String xuehao = scan.next();
+        int i;
+        for (i = 0; i < num; i++) {
+            if (xuehao.equals(stu[i].getID())) {
+                kick = true;
+                break;
+            }
+        }
+        if (kick) {
+            for (; i < num; i++) {
+                stu[i].setID(stu[i + 1].getID());
+                stu[i].setName(stu[i + 1].getName());
+                stu[i].setGender(stu[i + 1].getGender());
+                stu[i].setbirDate(stu[i + 1].getbirDate());
+            }
+        } else {
+            System.out.println("查无此人");
+        }
+        num--;
+    }
+
+    static boolean change = false;
+
+    static void modify() {                   // 修改学生信息
+        System.out.println("请输入你要修改的学号");
+        String xuehao = scan.next();
+        int i;
+        for (i = 0; i < num; i++) {
+            if (xuehao.equals(stu[i].getID())) {
+                change = true;
+                break;
+            }
+        }
+        if (change) {
+            System.out.println("请依次输入信息");
+            stu[i].setID(scan.nextint());
+            stu[i].setName(scan.next());
+            stu[i].setGender(scan.next());
+            stu[i].setbirDate(scan.next());
+        } else {
+            System.out.println("查无此人");
+        }
+        lookup();
+
+    }
+
+    static void lookup() {                  // 查找并输出
+        System.out.println("[学号\t|姓名 \t|性别 \t|出生日期");
+        for (int i = 0; i < num; i++) {
+            System.out.println(stu[i]);
+        }
+
+    }
+
+}

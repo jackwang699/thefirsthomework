@@ -1,0 +1,46 @@
+public class Students {
+    // 学号，姓名，性别，出生日期
+    private String birDate = " ";
+    private String Name = " ";
+    private boolean gender = true;
+    private int ID;
+
+    public String getbirDate() {
+        return birDate;
+    }
+
+    public void setbirDate(String birDate) {
+        this.birDate = birDate;
+    }
+
+    public string getName() {
+        return Name;
+    }
+
+    public void setName(String Name) {
+        this.Name = Name;
+    }
+
+    public boolean getGender() {
+        return gender;
+    }
+
+    public void setGender(boolean gender) {
+        this.gender = gender;
+    }
+
+
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setNum(int ID) {
+        this.ID = ID;
+    }
+
+    public String toString() {
+        return  "[" + Name + "\t|" + gender + "\t|" + birDate + "\t|" + ID + "]";
+    }
+
+}
